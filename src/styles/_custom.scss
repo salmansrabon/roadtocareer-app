@@ -1,0 +1,31 @@
+@layer utilities {
+  .rating {
+    &.rc-rate {
+      @apply text-xl tracking-[-5px];
+    }
+  }
+}
+
+.slick-track {
+  display: flex !important;
+  gap: 24px;
+}
+
+.slick-slide {
+  height: inherit !important;
+
+  > div {
+    height: 100% !important;
+    padding-top: 44px;
+    padding-bottom: 20px;
+  }
+}
+
+.MuiInputBase-input:focus {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}

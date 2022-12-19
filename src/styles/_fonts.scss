@@ -1,0 +1,23 @@
+@layer base {
+  @font-face {
+    font-family: "SFProDisplay";
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+    src: local("SF Pro Display"), local("SFProDisplay"),
+      url("/fonts/SFProDisplay.woff2") format("woff2"),
+      url("/fonts/SFProDisplay.woff") format("woff"),
+      url("/fonts/SFProDisplay.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "HindSiliguri";
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+    src: local("HindSiliguri"), local('Hind Siliguri Regular'), local('HindSiliguri-Regular'),
+      url("/fonts/HindSiliguri.woff2") format("woff2"),
+      url("/fonts/HindSiliguri.woff") format("woff"),
+      url("/fonts/HindSiliguri.ttf") format("truetype");
+  }
+}
