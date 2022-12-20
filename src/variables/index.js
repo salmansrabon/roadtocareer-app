@@ -290,16 +290,6 @@ export const teachers = [
     whatsapp: "https://api.whatsapp.com/send?phone=8801948563837",
   },
   {
-    name: "Imran Alam",
-    designation: "Guest Instructor",
-    image: "/images/Imran.jpg",
-    description:
-      "SDET and DevOps professional, having 9+ of years of experience in software tech industry",
-    facebook: "https://www.facebook.com/agile.cspo",
-    linkedin: "https://www.linkedin.com/in/imrandsi/",
-    whatsapp: "https://api.whatsapp.com/send?phone=8801630810063",
-  },
-  {
     name: "Asif Shahriar",
     designation: "Teaching Associate",
     image: "/images/Asif.jpg",
