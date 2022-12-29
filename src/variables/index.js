@@ -208,6 +208,13 @@ export const reviews = [
     description:"In my opinion, this is the best platform to learn Manual and Automation testing. Also specially for fresh graduates who are confused about their future path and willing to take a shot at SQA this is the place I recommend. The instructors in this course, the slides, and the examples shown in class are standard. If you do the projects and classes properly, I can surely say that you will have an advantage in the entry-level sector. Also if you get stuck while solving a problem you can easily get one-to-one help from them. You can give mock interviews, which are also taken by reputed QA experts from different companies which will give you an idea before applying for real jobs."
   },
   {
+    image: "/images/istiak.jpg",
+    name: "Istiak Ahmed",
+    batch: 5,
+    rating: 5,
+    description:"In my opinion, This is the Best platform in our country to learn both Manual & Automation Testing. The mentor of Road to SDET, Salman Bhai is one of the best. He taught us from the root briefly. Also He emphasized us to complete all the 12 projects which was very helpful for me to get my first job and also to work in my job. Anybody who will be serious throughout the course will be surely benefited. In this course there is Java Programming module is also included, That also helped me a lot. And lastly there is mock interview sessions available which is based upon real life scenario. This is very helpful to find out the lacking. I recommend anyone to join this course to become a successful Full Stack SQA & Test Automation Engineer."
+  },
+  {
     image: "/images/rakib.jpg",
     name: "Abdullah Al Rakib",
     batch: 4,
