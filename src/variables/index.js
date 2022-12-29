@@ -201,28 +201,35 @@ export const courses = [
 
 export const reviews = [
   {
+    image: "/images/nahid.jpg",
+    name: "Mahmudur Rahman Nahid",
+    batch: 5,
+    rating: 5,
+    description:"In my opinion, this is the best platform to learn Manual and Automation testing. Also specially for fresh graduates who are confused about their future path and willing to take a shot at SQA this is the place I recommend. The instructors in this course, the slides, and the examples shown in class are standard. If you do the projects and classes properly, I can surely say that you will have an advantage in the entry-level sector. Also if you get stuck while solving a problem you can easily get one-to-one help from them. You can give mock interviews, which are also taken by reputed QA experts from different companies which will give you an idea before applying for real jobs."
+  },
+  {
+    image: "/images/rakib.jpg",
+    name: "Abdullah Al Rakib",
+    batch: 4,
+    rating: 5,
+    description:"This is the  Best platform in our country to learn both Manual & Automation Testing .The mentor of Road to SDET Salman Bhai is one of the best. I recommend anyone to join this course to become a successful Full Stack SQA & Test Automation Engineer."
+  },
+  {
+    image: "/images/salauddin.jpg",
+    name: "Md. Salauddin Sany",
+    batch: 4,
+    rating: 5,
+    description:
+    "Salman Rahman Bhai, Senior Software Engineer at Cefalo Bangladesh Limited, is a mentor of Road to SDET.  He is one of the best instructors I have ever seen."+ 
+    "Salman bhai meticulously explains every topics and gives assignments. He is very proficient in his field. He is not only a learned man but also a very helpful individual. I have worked hard for 3 months for completing the assignments and submitted before due dates."
+  },
+  {
     image: "/images/shoheb.jpg",
     name: "Hasan Shoheb",
     batch: 3,
     rating: 5,
     description:
       "The course was very comprehensive and easy to understand. Very well composed. Covered all related concepts from basics to advance in a very precise manner.",
-  },
-  {
-    image: "/images/moshiur.jpg",
-    name: "Moshiur Rahman",
-    batch: 1,
-    rating: 5,
-    description:
-      "If you ask me this question about how can build a carrier in software automation, I must tell him about Salman Bhai, the mentor of road to SDET. I got all the benefits from Salman Bhai on my job getting journey .How to make a cv, face to interview. In my opinion, I see him as one of the best SQA professionals and mentor in Bangladesh. If anyone wants to do carrier in SQA. I must ask him to do a class of Road to SDET.",
-  },
-  {
-    image: "/images/nazmul.jpg",
-    name: "Nazmul Hoque",
-    batch: 1,
-    rating: 5,
-    description:
-      "Salman bhai, mentor of Road to SDET, is one of the best instructors I have ever seen. He is a great automation professional and helps me how to make a professional cv, how to write good test case, Web, API and mobile App automation script. I think that anyone can easily build his or her career if he or she follows salman vai’s guideline and enroll Road to SDET course.",
   },
   {
     image: "/images/rony.jpg",
@@ -240,6 +247,24 @@ export const reviews = [
     description:
       "আমি এইটুকু বলতে পারি প্রফেশনাল লাইফে কোন কোর্স আপনাকে স্কিল গিলে খাওয়াবে না। আপনার আগ্রহ, চেষ্টা থাকলে এই কোর্স আপনাকে বুস্ট আপ করবে দারুণ ভাবে। আর সালমান ভাইয়ের মত মেন্টর পাওয়া খুব লাকের ব্যাপার। আমি খুবই অবাক হতাম এতো গুলা স্টুডেন্টের এসাইনমেন্ট দেখা, আবার কেউ পারসোনাল নক দিলে সেটার রিপ্লাই দেয়া, কিভাবে এতো কিছু সামাল দেন উনি!! কোর্স শেষ করেছি দুই/তিন মাস আগে, কিন্তু এখনো কোন সমস্যায় পরলে ভাইয়া হেল্প তো করেনই, সাথে আরো কি সমস্যায় পড়তে পারি সেটাও আগে বুঝে সমাধান দিয়ে দেন। আল্লাহ ভাইয়া উত্তম প্রতিদান দিক।",
   },
+  {
+    image: "/images/moshiur.jpg",
+    name: "Moshiur Rahman",
+    batch: 1,
+    rating: 5,
+    description:
+      "If you ask me this question about how can build a carrier in software automation, I must tell him about Salman Bhai, the mentor of road to SDET. I got all the benefits from Salman Bhai on my job getting journey .How to make a cv, face to interview. In my opinion, I see him as one of the best SQA professionals and mentor in Bangladesh. If anyone wants to do carrier in SQA. I must ask him to do a class of Road to SDET.",
+  },
+  {
+    image: "/images/nazmul.jpg",
+    name: "Nazmul Hoque",
+    batch: 1,
+    rating: 5,
+    description:
+      "Salman bhai, mentor of Road to SDET, is one of the best instructors I have ever seen. He is a great automation professional and helps me how to make a professional cv, how to write good test case, Web, API and mobile App automation script. I think that anyone can easily build his or her career if he or she follows salman vai’s guideline and enroll Road to SDET course.",
+  }
+  
+  
 ];
 
 export const about = [
@@ -265,20 +290,10 @@ export const teachers = [
     designation: "Founder & Instructor",
     image: "/images/Salman.png",
     description:
-      "Software test automation professional and 7+ years of experience in fintech and software industry.",
+      "Sr. Software Engineer, Cefalo Bangladesh Ltd. \nSoftware test automation professional \n7+ years of experience in fintech and software industry.",
     facebook: "https://www.facebook.com/profile.php?id=100070104707980",
     linkedin: "https://www.linkedin.com/in/kmsalmanrahman/",
     whatsapp: "https://api.whatsapp.com/send?phone=8801686606909",
-  },
-  {
-    name: "Mahidul Hasan",
-    designation: "Co Founder & Instructor",
-    image: "/images/Mahidul.png",
-    description:
-      "DevOps professional, AVP and Team lead at Progoti Systems Ltd having 12+ years of experience in fintech industry and software firm.",
-    facebook: "https://www.facebook.com/mahidul.hasan.56",
-    linkedin: "https://www.linkedin.com/in/mahidul-hasan-95678137/",
-    whatsapp: "https://api.whatsapp.com/send?phone=8801675009723",
   },
   {
     name: "Pollab Ahmed",
@@ -291,12 +306,21 @@ export const teachers = [
   },
   {
     name: "Asif Shahriar",
-    designation: "Teaching Associate",
-    image: "/images/Asif.jpg",
+    designation: "Isstructor & Teaching Associate",
+    image: "/images/Asif-2.jpg",
     description: "Ex Notredemian, BRAC Univ, SQA Engineer at DSI ",
     facebook: "https://www.facebook.com/asif.shahriar.79",
     linkedin: "https://www.linkedin.com/in/a-shahriar/",
     whatsapp: "https://api.whatsapp.com/send?phone=8801971819475",
+  },
+  {
+    name: "Nibraz Khan",
+    designation: "Instructor & Teaching Associate",
+    image: "/images/Nibraz.jpeg",
+    description: "BRAC Univ, SQA Engineer at DSI ",
+    facebook: "https://www.facebook.com/farhanfuhad.nibraj",
+    linkedin: "https://www.linkedin.com/in/nibraz-khan/",
+    whatsapp: "https://api.whatsapp.com/send?phone=8801864778871",
   },
   {
     name: "Fardin Amin Arpon",
@@ -306,6 +330,16 @@ export const teachers = [
     facebook: "https://www.facebook.com/FardinAminArpon",
     linkedin: "https://www.linkedin.com/in/fardinarpon/",
     whatsapp: "https://api.whatsapp.com/send?phone=8801902179445",
+  },
+  {
+    name: "Mahidul Hasan",
+    designation: "Instructor",
+    image: "/images/Mahidul.png",
+    description:
+      "DevOps professional, AVP and Team lead at Progoti Systems Ltd having 12+ years of experience in fintech industry and software firm.",
+    facebook: "https://www.facebook.com/mahidul.hasan.56",
+    linkedin: "https://www.linkedin.com/in/mahidul-hasan-95678137/",
+    whatsapp: "https://api.whatsapp.com/send?phone=8801675009723",
   },
 ];
 
