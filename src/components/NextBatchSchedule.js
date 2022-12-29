@@ -19,7 +19,7 @@ const Container = tw(Wrapper)`
 `;
 
 const NextBatchSchedule = ({ data }) => {
-  const { enrollmentStartDate, enrollmentEndDate, orientationDate, classStartDate } = data || {};
+  const { enrollmentStartDate, enrollmentEndDate, orientationDate, classStartDate, classTime } = data || {};
   return (
     <Wrapper className="pt-20">
       <Container>
@@ -47,6 +47,7 @@ const NextBatchSchedule = ({ data }) => {
             </div>
             <p className="ml-4">
               ওরিয়েন্টেশন এর তারিখ {format(new Date(orientationDate), "dd MMM yyyy")}
+              {"\t"} এবং সময় 8:00PM
             </p>
           </div>
           <div className="flex items-center">
@@ -55,6 +56,7 @@ const NextBatchSchedule = ({ data }) => {
             </div>
             <p className="ml-4">
               ক্লাস শুরুর তারিখ {format(new Date(classStartDate), "dd MMM yyyy")}
+              {"\t"} এবং সময় 8:30PM
             </p>
           </div>
         </div>

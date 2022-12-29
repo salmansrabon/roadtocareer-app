@@ -26,7 +26,7 @@ const Add = () => {
       orientationDate: "",
       classStartDate: "",
       classDays: [],
-      classTime: "21:00",
+      classTime: "20:00",
       image: "",
       video: "",
       isEnabled: true,
