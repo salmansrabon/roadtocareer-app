@@ -8,7 +8,7 @@ const Course = ({ isSuccess, isError, error, course }) => {
       <>
       {course.isEnabled ? (
         <>
-      <Head title="Professional Training BD" />
+      <Head title="Road to Career" />
       <Layout>
         {isSuccess && (
           <>
