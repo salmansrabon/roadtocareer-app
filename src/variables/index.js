@@ -276,7 +276,7 @@ export const reviews = [
 
 export const about = [
   {
-    avater: "/images/hero-3.png",
+    avater: "/images/logo.png",
     name: "আমাদের বিশেষত্ব",
     details: [
       "প্রত্যেক ক্লাস এর পর Google Classroom এর মাধ্যমে Assignment দেয়া হয় এবং মূল্যায়ন করা হয়। কোথাও ভুল করলে কি ভুল হল সেটা সাথে সাথে বুঝিয়ে দেয়া হয়।",
