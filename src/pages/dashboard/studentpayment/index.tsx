@@ -43,7 +43,7 @@ const index = () => {
           {studentPayment ?studentPayment?.map((item) => (
             <div className="grid max-w-sm grid-cols-2 gap-4 p-4 bg-gray-700 rounded" key={item.id}>
               <div className="flex flex-col">
-                <div className="text-sm font-bold">Course Name</div>
+                <div className="text-sm font-bold">Student Name</div>
                 <div className="text-sm">{item.name}</div>
               </div>
               <div className="flex flex-col">

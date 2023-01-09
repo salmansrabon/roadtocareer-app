@@ -13,7 +13,7 @@ const Home = ({ isSuccess, courseList }) => {
         <About />
         <Teachers />
         <Slider />
-        <Contact />
+        {/* <Contact /> */}
       </Layout>
     </>
   );
