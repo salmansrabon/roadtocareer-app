@@ -1,7 +1,12 @@
 export enum QuizTypes {
   MultipleChoice = "MultipleChoice",
   TrueFalse = "TrueFalse",
-  FillInTheBlank = "FillInTheBlank",
   MultipleAnswer = "MultipleAnswer",
   ShortAnswer = "ShortAnswer",
+}
+
+
+export enum TrueFalseAnswer {
+    True = "True",
+    False = "False",
 }

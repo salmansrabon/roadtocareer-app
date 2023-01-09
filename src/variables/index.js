@@ -16,7 +16,7 @@ import { FaChalkboardTeacher } from "react-icons/fa";
 //
 
 // export const api = process.env.NEXT_PUBLIC_API_URL;
-export const api = process.env.NEXT_PUBLIC_API_URL;
+export const api = process.env.NEXT_PUBLIC_API_URL||"http://localhost:8081/";
 
 export const brandName = "ROAD TO CAREER";
 

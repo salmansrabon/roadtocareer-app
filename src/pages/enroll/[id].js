@@ -40,7 +40,7 @@ const Card = tw.div`
 const Enroll = (props) => {
   const dispatch = useDispatch();
   const { isFetching, isSuccess, isError, error } = useSelector((state) => state.userReducer);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, unregister } = useForm();
   const [selection, setSelection] = React.useState("Fresh Graduate");
   const onSubmit = (student) => {
     // let py = student.passingYear;
@@ -124,7 +124,13 @@ const Enroll = (props) => {
                         className="flex-grow"
                         required
                         {...register("profession")}
-                        onChange={(e) => setSelection(e.target.value)}
+                        onChange={(e) => {
+                          setSelection(e.target.value)
+                          if(e.target.value !="job holder"){
+                            unregister("experience");
+                            unregister("company")
+                          }
+                        }}
                       >
                         <option value="Fresh Graduate">Fresh Graduate</option>
                         <option value="Student">Student</option>
