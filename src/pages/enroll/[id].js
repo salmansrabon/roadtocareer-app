@@ -86,7 +86,10 @@ const Enroll = (props) => {
                         placeholder="Your Full Name"
                         className="flex-grow"
                         required
-                        {...register("name")}
+                        {...register("name",{
+                          required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
 
@@ -99,7 +102,10 @@ const Enroll = (props) => {
                         placeholder="Your Email"
                         className="flex-grow"
                         required
-                        {...register("email")}
+                        {...register("email",{
+                          required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
                     <InputBlock>
@@ -112,7 +118,10 @@ const Enroll = (props) => {
                         placeholder="Your Mobile Number"
                         className="flex-grow"
                         required
-                        {...register("mobile")}
+                        {...register("mobile",{
+                          required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
 
@@ -165,7 +174,10 @@ const Enroll = (props) => {
                         placeholder="Your University"
                         className="flex-grow"
                         required
-                        {...register("university")}
+                        {...register("university",{
+                          required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
                     <InputBlock>
@@ -177,7 +189,10 @@ const Enroll = (props) => {
                         placeholder=" month, year (example: 02, 2020)"
                         className="flex-grow"
                         required
-                        {...register("passingYear")}
+                        {...register("passingYear",{
+                          required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
                     {selection.toLowerCase() == "job holder" && (
@@ -190,7 +205,10 @@ const Enroll = (props) => {
                             type="text"
                             placeholder="Your Company Name"
                             className="flex-grow"
-                            {...register("company")}
+                            {...register("company",{
+                              required: 'missing required field',
+                              setValueAs: v => v.trim(),
+                            })}
                           />
                         </InputBlock>
 
@@ -202,7 +220,10 @@ const Enroll = (props) => {
                             type="text"
                             placeholder="Your Total Job Experience"
                             className="flex-grow"
-                            {...register("experience")}
+                            {...register("experience",{
+                              required: 'missing required field',
+                              setValueAs: v => v.trim(),
+                            })}
                           />
                         </InputBlock>
                       </>
@@ -215,7 +236,10 @@ const Enroll = (props) => {
                         type="text"
                         placeholder="City Name"
                         className="flex-grow"
-                        {...register("city")}
+                        {...register("city",{
+                          // required: 'missing required field',
+                          setValueAs: v => v.trim(),
+                        })}
                       />
                     </InputBlock>
                     {isError && <div className="w-full text-center text-red-600">{error}</div>}

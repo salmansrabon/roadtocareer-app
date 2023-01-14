@@ -147,7 +147,11 @@ const Edit = () => {
       classTime: {
         start: data.classTime,
       },
+      enrollmentStartDate: data.enrollmentStartDate,
+      enrollmentEndDate: data.enrollmentEndDate,
+      orientationDate: data.orientationDate,
       classDays: data.classDays,
+      classStartDate: data.classStartDate,
       isEnabled: data.isEnabled,
       notice: data.notice,
     };

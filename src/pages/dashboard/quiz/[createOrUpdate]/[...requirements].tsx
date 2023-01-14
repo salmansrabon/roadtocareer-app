@@ -3,7 +3,7 @@ import {Grid} from "@mui/material";
 import {Button} from "@material-ui/core";
 import {useRouter} from "next/router";
 import {Control, useFieldArray, UseFormRegister, useWatch} from "react-hook-form";
-import {HookDatePicker, useHookForm} from "mui-react-hook-form-plus";
+import {HookDatePicker,HookDateTimePicker, useHookForm} from "mui-react-hook-form-plus";
 import LoadingOverlayWrapper from "react-loading-overlay-ts";
 
 import {MdAdd, MdRemove} from "react-icons/md";
@@ -27,6 +27,8 @@ const defaultValues = {
     description: "",
     quizStartDate: new Date(),
     quizEndDate: new Date(),
+    maxQues:0,
+    totalTime:0,
     questions: [
         // {
         //     question: "",
@@ -222,8 +224,8 @@ function QuizCreate() {
                                 <label htmlFor="quizStartDate" className="min-w-[100px] flex-shrink-0">
                                     Start Date
                                 </label>
-                                <HookDatePicker
-                                    datePickerProps={{
+                                <HookDateTimePicker
+                                    dateTimePickerProps={{
                                         InputProps: {
                                             sx: {
                                                 background: "#ddd",
@@ -240,8 +242,8 @@ function QuizCreate() {
                                 <label htmlFor="quizEndDate" className="min-w-[100px] flex-shrink-0">
                                     End Date
                                 </label>
-                                <HookDatePicker
-                                    datePickerProps={{
+                                <HookDateTimePicker
+                                    dateTimePickerProps={{
                                         InputProps: {
                                             sx: {
                                                 background: "#ddd",
@@ -251,6 +253,22 @@ function QuizCreate() {
                                     }}
                                     {...registerState("quizEndDate")}
                                 />
+                            </LoginInputBlock>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <LoginInputBlock>
+                                <label htmlFor="totalTime" className="min-w-[100px] flex-shrink-0">
+                                    Total Time (Minute)
+                                </label>
+                                <LoginInput id="totalTime" className="p-2 dark:text-white" {...formRegister("totalTime")} />
+                            </LoginInputBlock>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <LoginInputBlock>
+                                <label htmlFor="maxQuestion" className="min-w-[100px] flex-shrink-0">
+                                    Max Questions
+                                </label>
+                                <LoginInput id="maxQues" className="p-2 dark:text-white" {...formRegister("maxQues")} />
                             </LoginInputBlock>
                         </Grid>
                         <Grid item xs={12}>

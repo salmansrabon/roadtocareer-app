@@ -58,6 +58,15 @@ export const studentApi = createApi({
       transformResponse: (response) => response.data,
       invalidatesTags: ["Student"],
     }),
+    addAttendance: builder.mutation({
+      query: ({ id, date }) => ({
+        url: `v1/student/attendance/${id}`,
+        method: "PUT",
+        body: date,
+      }),
+      transformResponse: (response) => response.data,
+      invalidatesTags: ["Student"],
+    }),
   }),
 });
 
@@ -67,5 +76,6 @@ export const {
   useAddStudentMutation,
   useEditStudentMutation,
   useDeleteStudentMutation,
+  useAddAttendanceMutation,
   util: {},
 } = studentApi;

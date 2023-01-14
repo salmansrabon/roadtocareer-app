@@ -4,7 +4,8 @@ export {
   useGetStudentsQuery,
   useAddStudentMutation,
   useEditStudentMutation,
-  useDeleteStudentMutation
+  useDeleteStudentMutation,
+  useAddAttendanceMutation,
 } from "./studentApi";
 export {
   courseApi,
