@@ -57,6 +57,11 @@ export const dashboardMenus = [
     link: "/student",
   },
   {
+    title: "Attendance",
+    icon: MdSchool,
+    link: "/attendance",
+  },
+  {
     title: "Payment",
     icon: MdPayment,
     link: "/payment",
