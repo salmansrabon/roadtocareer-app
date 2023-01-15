@@ -219,11 +219,11 @@ const Dashboard = ({ children }) => {
       <Contents className={isDashboardOpen ? "w-[calc(100%-18rem)]" : "w-[calc(100%-3.5rem)]"}>
         <div className="flex items-center justify-between mb-6">
           <div></div>
-          <div>
+          <div className="pl-2 text-bold text-lg text-black dark:text-white border-solid border-2 border-sky-500 rounded-lg rounded-r-full bg-sky-500 dark:bg-sky-600 dark:border-sky-700">
             Welcome, {getStudentQuery.isSuccess?getStudentQuery.data.name.split(" ")[0]:email}
-            <IconButton size="small" onClick={handleOpen}>
+            <IconButton size="small"  onClick={handleOpen}>
               <Avatar className="cursor-pointer">
-                <MdAccountCircle size={24} />
+                <MdAccountCircle size={24} color="sky"/>
               </Avatar>
             </IconButton>
             <Menu

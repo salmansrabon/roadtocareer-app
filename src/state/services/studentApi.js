@@ -62,7 +62,7 @@ export const studentApi = createApi({
       query: ({ id, date }) => ({
         url: `v1/student/attendance/${id}`,
         method: "PUT",
-        body: date,
+        // body: {date},
       }),
       transformResponse: (response) => response.data,
       invalidatesTags: ["Student"],
