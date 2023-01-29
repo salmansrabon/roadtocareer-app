@@ -23,7 +23,15 @@ type DefaultValues = typeof defaultValues;
 
 const Payment = () => {
   const [filterRef, setFilterRef] = React.useState<Partial<DefaultValues>>({});
-  const { isLoading, isFetching, isError, data, error, refetch: refetchList } = useGetAllPaymentsQuery(filterRef);
+  const [showDues, setShowDues] = React.useState(false);
+  const {
+    isLoading,
+    isFetching,
+    isError,
+    data,
+    error,
+    refetch: refetchList,
+  } = useGetAllPaymentsQuery({ filterRef, showDues });
   const [message, setMessage] = React.useState("");
   const [err, setError] = React.useState("");
   const { role } = useUser();
@@ -32,7 +40,7 @@ const Payment = () => {
   const [rmvOpen, setROpen] = React.useState(false);
 
   const handleRmvClose = () => {
-    setPaymentId(null)
+    setPaymentId(null);
     setROpen(false);
   };
   const handleRmvClick = (event, rowData) => {
@@ -83,6 +91,11 @@ const Payment = () => {
   const studentIdsUnique = [...(new Set<string>(studentIds) as any)];
   const namesUnique = [...(new Set<string>(names) as any)];
   const batchesUnique = [...(new Set<string>(batches) as any)].sort((a, b) => a - b);
+  const handleChecked = (e) => {
+    const { checked } = e.target;
+    setShowDues(checked);
+    refetchList();
+  };
   return (
     <>
       <Head title="Payments" />
@@ -150,7 +163,6 @@ const Payment = () => {
                 label: "Student Name",
               }}
             />
-
             <HookAutoComplete
               gridProps={{
                 xs: 6,
@@ -170,8 +182,11 @@ const Payment = () => {
                 label: "Batch Number",
               }}
             />
+            Show Dues
+            <input type="checkbox" onChange={handleChecked} />
           </Grid>
         </div>
+
         <MaterialTable
           title="Payments"
           columns={[
@@ -235,7 +250,6 @@ const Payment = () => {
                     <button
                       type="button"
                       className="inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg"
-
                       onClick={handleRmvClose}
                     >
                       Close

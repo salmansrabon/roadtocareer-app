@@ -30,10 +30,10 @@ export const paymentApi = createApi({
       providesTags: ["Payment"],
     }),
     getAllPayments: builder.query({
-      query: (filters = {}) => ({
+      query: (filters ={}) => ({
         url: `v1/payments`,
         method: "GET",
-        params: filters,
+        params:filters.showDues?filters:{...filters.filterRef},
       }),
       transformResponse: (response) => response.data.rows,
     }),
