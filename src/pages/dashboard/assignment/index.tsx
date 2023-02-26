@@ -24,7 +24,7 @@ type DefaultValues = typeof defaultValues;
 
 const Assignments = () => {
   const router = useRouter();
-  const { id, role, email,  isAuthenticated } = useUser();
+  const { id, role } = useUser();
   // const getStudentQuery = useGetStudentQuery({ id }, { skip: !id });
   
 

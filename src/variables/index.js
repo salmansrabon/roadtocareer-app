@@ -122,11 +122,11 @@ export const studentMenus = [
   //   icon: MdAssignment,
   //   link: "/assignment",
   // },
-  // {
-  //   title: "Quizzes",
-  //   icon: MdSchool,
-  //   link: "/quiz",
-  // },
+  {
+    title: "Quizzes",
+    icon: MdSchool,
+    link: "/quiz",
+  },
 ];
 
 export const instructorMenus = [

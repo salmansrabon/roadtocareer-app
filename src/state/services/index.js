@@ -13,7 +13,7 @@ export {
   useGetCoursesQuery,
   useAddCourseMutation,
   useEditCourseMutation,
-  useDeleteCourseMutation
+  useDeleteCourseMutation,
 } from "./courseApi";
 export {
   paymentApi,
@@ -22,7 +22,7 @@ export {
   useGetAllPaymentsQuery,
   useAddPaymentMutation,
   useEditPaymentMutation,
-  useDeletePaymentMutation
+  useDeletePaymentMutation,
 } from "./paymentApi";
 
 export {
@@ -30,7 +30,7 @@ export {
   useGetPackagesQuery,
   useAddPackageMutation,
   useEditPackageMutation,
-  useDeletePackageMutation
+  useDeletePackageMutation,
 } from "./packageApi";
 
 export {
@@ -38,7 +38,7 @@ export {
   useGetModulesQuery,
   useAddModuleMutation,
   useEditModuleMutation,
-  useDeleteModuleMutation
+  useDeleteModuleMutation,
 } from "./modulesApi";
 
 export {
@@ -55,16 +55,19 @@ export {
   useAddAssignmentMutation,
   useEditAssignmentMutation,
   useGetAssignmentQuery,
-  useDeleteAssignmentMutation
+  useDeleteAssignmentMutation,
 } from "./assignmentApi";
 
 export {
   quizApi,
   useGetQuizzesQuery,
+  useGetAnswersQuery,
   useAddQuizMutation,
   useEditQuizMutation,
   useGetQuizQuery,
-  useDeleteQuizMutation
+  useDeleteQuizMutation,
+  useGetRandomQuizQuery,
+  useGetQuestionsQuery,
 } from "./quizApi";
 
 export {
@@ -73,5 +76,5 @@ export {
   useAddTeacherMutation,
   useEditTeacherMutation,
   useGetTeacherQuery,
-  useDeleteTeacherMutation
+  useDeleteTeacherMutation,
 } from "./teachersApi";

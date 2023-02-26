@@ -19,7 +19,7 @@ const Edit = () => {
   const packageName = router.query.package;
 
   const [packagePrice, setPackagePrice] = useState(0);
-  const[message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const getStudentQuery = useGetStudentQuery({ id }, { skip: !id });
   const getCourseQuery = useGetCourseQuery({ id: courseId }, { skip: !courseId });
@@ -33,7 +33,7 @@ const Edit = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      courseId, 
+      courseId,
       batch: "",
       name: "",
       email: "",
@@ -47,7 +47,7 @@ const Edit = () => {
       isValid: 0,
       packageName: packageName,
       courseFee: "",
-      passingYear:"01, 2022"
+      passingYear: "01, 2022",
       // paid: "",
       // installment1: "",
       // installment2: "",
@@ -70,7 +70,7 @@ const Edit = () => {
       });
     }
 
-    let initialData = {courseId};
+    let initialData = { courseId };
 
     if (getStudentQuery.isSuccess) {
       const {
@@ -85,7 +85,7 @@ const Edit = () => {
         experience,
         isEnrolled,
         isValid,
-        passingYear
+        passingYear,
       } = getStudentQuery.data;
 
       initialData = {
@@ -101,8 +101,7 @@ const Edit = () => {
         experience,
         isEnrolled,
         isValid,
-        passingYear
-
+        passingYear,
       };
     }
 
@@ -135,7 +134,9 @@ const Edit = () => {
       const { price } = getCourseQuery.data;
       const formattedPrice = JSON.parse(price);
 
-      const packageDetails = formattedPrice.find((item) => item.packageName.toLowerCase() === packageName.toLowerCase() );
+      const packageDetails = formattedPrice.find(
+        (item) => item.packageName.toLowerCase() === packageName.toLowerCase()
+      );
       const packagePrice =
         getStudentQuery?.data?.profession.toLowerCase() === "Job Holder"
           ? packageDetails.jobHolderFee
@@ -162,7 +163,6 @@ const Edit = () => {
     // setTimeout(
     //   ()=>setMessage(""), 2000
     // )
-    
   };
 
   return (
@@ -196,10 +196,7 @@ const Edit = () => {
         {editStudentMutation.isError && (
           <Alert variant="error" message={editStudentMutation.error?.data?.message} />
         )}
-        {
-          message!="" && <Alert variant="Successs" message={message} />
-          
-        }
+        {message != "" && <Alert variant="Successs" message={message} />}
       </Dashboard>
     </>
   );

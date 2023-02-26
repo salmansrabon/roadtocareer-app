@@ -83,7 +83,7 @@ const Attendances = () => {
       : data?.map((student: any) => ({
           ...student,
           percentage:
-            Math.round((JSON.parse(student?.attendances ?? "[]").length / 33) * 100) + "%",
+            Math.min(Math.round((JSON.parse(student?.attendances ?? "[]").length / 30) * 100), 100) + "%",
           enrolledAt: format(new Date(student.createdAt), "dd MMM yyyy, hh:mm a"),
         }));
   }, [data]);

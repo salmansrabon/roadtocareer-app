@@ -72,6 +72,7 @@ export const studentApi = createApi({
 
 export const {
   useGetStudentQuery,
+  useGetAnswersQuery,
   useGetStudentsQuery,
   useAddStudentMutation,
   useEditStudentMutation,

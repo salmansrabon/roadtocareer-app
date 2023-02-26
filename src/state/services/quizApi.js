@@ -21,6 +21,33 @@ export const quizApi = createApi({
       transformResponse: (response) => response.data,
       providesTags: [`Quiz-id`],
     }),
+    getAnswers: builder.query({
+      query: ({ id, studentId }) => ({
+        url: `v1/quizes/getSecretAnswers365/${id}/?studentId=${studentId}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response.data,
+      providesTags: [`Quiz-id`],
+    }),
+    getQuestions: builder.query({
+      query: ({ id }) => ({
+        url: `v1/quizes/getQuestions/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response.data,
+      providesTags: [`Quiz-id`],
+    }),
+    getRandomQuiz: builder.query({
+      query: ({ id, studentId }) => ({
+        url: `v1/quizes/getRandomQuestions/${id}`,
+        method: "GET",
+        params: {
+          studentId,
+        },
+      }),
+      transformResponse: (response) => response.data,
+      providesTags: [`Quiz-id`],
+    }),
     getQuizzes: builder.query({
       query: (filters) => ({
         url: "v1/quizes",
@@ -51,8 +78,8 @@ export const quizApi = createApi({
       invalidatesTags: ["Quiz"],
     }),
     deleteQuiz: builder.mutation({
-      query: ({ id, }) => ({
-        url: `v1/quiz/${id}`,
+      query: ({ id }) => ({
+        url: `v1/quizes/${id}`,
         method: "DELETE",
       }),
       transformResponse: (response) => response.data,
@@ -67,5 +94,8 @@ export const {
   useAddQuizMutation,
   useEditQuizMutation,
   useDeleteQuizMutation,
+  useGetRandomQuizQuery,
+  useGetAnswersQuery,
+  useGetQuestionsQuery,
   util: {},
 } = quizApi;
