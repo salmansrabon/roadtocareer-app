@@ -66,9 +66,10 @@ export const QuizPrompt: React.FC<Props> = ({
 
   const confirmSubmitDialog = useDialog();
 
-  const onSubmit = (data: QuizAnswer) => {
+  const onSubmit = (_data: QuizAnswer) => {
     confirmSubmitDialog.open();
   };
+
   const { isLoading: isAnswersLoading, refetch: answerRefetch } = useGetAnswersQuery(
     {
       id: quizId,
@@ -80,9 +81,7 @@ export const QuizPrompt: React.FC<Props> = ({
   );
 
   const submitQuiz = async (e?: React.SyntheticEvent) => {
-    if (e) {
-      confirmSubmitDialog.close(e);
-    }
+    confirmSubmitDialog.close(e);
 
     let answers = {};
 

@@ -4,15 +4,20 @@ import { HookAutoComplete, useDialog } from "mui-react-hook-form-plus";
 
 import withPermissions from "../../../components/withPermissions";
 import { Dashboard, Head, MaterialTable } from "../../../components";
-import { useDeleteQuizMutation, useGetQuizzesQuery } from "../../../state/services";
+import {
+  useDeleteQuizMutation,
+  useGetMarksQuery,
+  useGetQuizzesQuery,
+} from "../../../state/services";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { useSeatchList } from "../../../hooks/useSearchList";
 import { useRouter } from "next/router";
 import { Grid } from "@mui/material";
 import { useUser } from "../../../hooks/useUser";
-import { Button, Dialog, DialogContent, DialogTitle } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Link from "next/link";
+import { QueryStatus } from "@reduxjs/toolkit/dist/query";
 
 const defaultValues = {
   title: null as string | null,
@@ -26,7 +31,6 @@ const Quizzes = () => {
   const router = useRouter();
 
   const { id, role } = useUser();
-  const isStudent = role === "student";
   // const getStudentQuery = useGetStudentQuery({ id }, { skip: !id });
 
   const [deleteQuiz, { isLoading: isDeleteLoading }] = useDeleteQuizMutation();
@@ -53,55 +57,76 @@ const Quizzes = () => {
   const packageIdsUnique = [...(new Set<string>(packageIds) as any)];
   const courseIdsUnique = [...(new Set<string>(courseIds) as any)];
 
-  const { register, open } = useDialog();
+  const { register, open, close } = useDialog();
 
   const [selected, setSelected] = React.useState<any>({});
+
+  const {
+    data: studentsWithMarks,
+    isLoading: isMarksLaoding,
+    isFetching: isMarksFetching,
+    refetch,
+    status,
+  } = useGetMarksQuery({ id: selected?.id }, { skip: !selected?.id });
+
+  const marks = studentsWithMarks?.map((student) => ({
+    ...student,
+  }));
+
+  const isAllLoading =
+    isLoading || isFetching || isDeleteLoading || isMarksLaoding || isMarksFetching;
+
+  React.useEffect(() => {
+    if (selected?.id) {
+      refetch()
+        .unwrap()
+        .then(() => {
+          open();
+        });
+    }
+  }, [selected]);
 
   return (
     <>
       <Head title="Quizzes" />
 
-      <Dialog maxWidth="xs" fullWidth {...register()}>
+      <Dialog maxWidth="lg" fullWidth {...register()}>
         <DialogTitle>
           <Typography color="primary">{selected?.title}</Typography>
         </DialogTitle>
         <DialogContent>
-          {isStudent ? (
-            <>
-              {/* FOR STUDENTS*/}
-              <Button variant="contained" color="primary">
-                <Link
-                  className="text-blue-700 underline"
-                  href={`/dashboard/quiz/view/${selected?.id}`}
-                >
-                  Go to Quiz
-                </Link>
-              </Button>
-            </>
-          ) : (
-            <>
-              <Typography color="textPrimary">Course Id: {selected?.courseId}</Typography>
-              <Typography color="textPrimary">Package Id: {selected?.packageId}</Typography>
-            </>
-          )}
+          <MaterialTable
+            title="All Student Marks"
+            columns={[
+              {
+                title: "Student Id",
+                field: "studentId",
+              },
+              {
+                title: "Student Name",
+                field: "studentName",
+              },
+              { title: "Course Id", field: "courseId" },
+              { title: "Obtained Marks", field: "quizAnswer.marks" },
+              { title: "Total Marks", field: "quizAnswer.totalMarks" },
+            ]}
+            data={marks ?? []}
+            options={{
+              actionsColumnIndex: -1,
+            }}
+          />
         </DialogContent>
+        <DialogActions>
+          <Button onClick={close} variant="contained" color="primary" style={{ marginRight: 20 }}>
+            Close
+          </Button>
+        </DialogActions>
       </Dialog>
 
-      <LoadingOverlayWrapper active={isLoading || isFetching || isDeleteLoading}>
+      <LoadingOverlayWrapper active={isAllLoading}>
         <Dashboard>
           <div className="flex items-center justify-between mb-5">
             <h6>Quizzes</h6>
-            {/* {role === "instructor" && (
-              <Button
-                onClick={() => {
-                  router.push(`/quizzes/create/${rowData.courseId}/${rowData.packageId}`);
-                }}
-                variant="contained"
-                color="primary"
-              >
-                Add Assignment
-              </Button>
-            )} */}
           </div>
 
           <div className="p-4 mb-4 bg-white">
@@ -170,65 +195,45 @@ const Quizzes = () => {
 
           <MaterialTable
             title="All Students"
-            columns={
-              isStudent
-                ? [
-                    {
-                      title: "Title",
-                      field: "title",
-                      render: (rowData) => {
-                        return (
-                          <button
-                            className="text-indigo-500 underline"
-                            onClick={() => {
-                              setSelected(rowData);
-                              open();
-                            }}
-                          >
-                            {rowData.title}
-                          </button>
-                        );
-                      },
-                    },
-                    { title: "Description", field: "description" },
-                    { title: "Start Date", field: "quizStartDate" },
-                    { title: "End Date", field: "quizEndDate" },
-                  ]
-                : [
-                    {
-                      title: "Title",
-                      field: "title",
-                    },
-                    { title: "Description", field: "description" },
-                    { title: "Course Id", field: "courseId" },
-                    { title: "Package Id", field: "packageId" },
-                    { title: "Start Date", field: "quizStartDate" },
-                    { title: "End Date", field: "quizEndDate" },
-                  ]
-            }
+            columns={[
+              {
+                title: "Title",
+                field: "title",
+                render: (rowData) => (
+                  <Button
+                    onClick={() => {
+                      setSelected(rowData);
+                    }}
+                  >
+                    <a className="text-blue-500 underline">{rowData.title}</a>
+                  </Button>
+                ),
+              },
+              { title: "Description", field: "description" },
+              { title: "Course Id", field: "courseId" },
+              { title: "Package Id", field: "packageId" },
+              { title: "Start Date", field: "quizStartDate" },
+              { title: "End Date", field: "quizEndDate" },
+            ]}
             data={quizzes}
             actions={[
-              isStudent
-                ? undefined
-                : {
-                    icon: () => <MdEdit />,
-                    tooltip: "Edit Quiz",
-                    onClick: (_event, rowData) => {
-                      // do something with the rowData
-                      router.push(
-                        `/dashboard/quiz/${rowData.id}/${rowData.courseId}/${rowData.packageId}`
-                      );
-                    },
-                  },
-              isStudent
-                ? undefined
-                : {
-                    icon: () => <MdDelete />,
-                    tooltip: "Delete Quiz",
-                    onClick: (_event, rowData) => {
-                      deleteQuiz({ id: rowData.id });
-                    },
-                  },
+              {
+                icon: () => <MdEdit />,
+                tooltip: "Edit Quiz",
+                onClick: (_event, rowData) => {
+                  // do something with the rowData
+                  router.push(
+                    `/dashboard/quiz/${rowData.id}/${rowData.courseId}/${rowData.packageId}`
+                  );
+                },
+              },
+              {
+                icon: () => <MdDelete />,
+                tooltip: "Delete Quiz",
+                onClick: (_event, rowData) => {
+                  deleteQuiz({ id: rowData.id });
+                },
+              },
             ]}
             options={{
               actionsColumnIndex: -1,
@@ -240,4 +245,4 @@ const Quizzes = () => {
   );
 };
 
-export default withPermissions(["instructor", "admin", "student"])(Quizzes);
+export default withPermissions(["instructor", "admin"])(Quizzes);

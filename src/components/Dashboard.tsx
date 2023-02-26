@@ -3,18 +3,16 @@ import Link from "next/link";
 import tw from "tailwind-styled-components";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { MdDarkMode, MdWbSunny, MdMenu, MdClose, MdLogout, MdAccountCircle } from "react-icons/md";
+import { MdDarkMode, MdWbSunny, MdMenu, MdClose, MdAccountCircle } from "react-icons/md";
 import { Button } from ".";
 import { logout } from "../state/user";
 import { toggleDashboard } from "../state/dashboard";
-import { brandName, dashboardMenus, studentMenus, userMenuMap } from "../variables";
+import { brandName, userMenuMap } from "../variables";
 import { useUser } from "../hooks/useUser";
 import { Avatar, IconButton, Menu } from "@mui/material";
 import { useMenu } from "mui-react-hook-form-plus";
-import { user } from "../state";
-import {
-  useGetStudentQuery,
-} from "../state/services";
+import { useGetStudentQuery } from "../state/services";
+
 const Drawer = tw.div`
   relative 
   flex
@@ -72,24 +70,26 @@ const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
   const { isDashboardOpen } = useSelector((state: any) => state.dashboardReducer);
 
-  const { id, role, email,  isAuthenticated } = useUser();
+  const { id, role, email, isAuthenticated } = useUser();
   const getStudentQuery = useGetStudentQuery({ id }, { skip: !id });
-  
+
   const [theme, setTheme] = useState("");
 
   const { register, handleOpen } = useMenu();
-  let initialData = {id,
-    batch:0,
-    name:"",
+
+  let initialData = {
+    id,
+    batch: 0,
+    name: "",
     email,
-    mobile:"",
-    city:"",
-    university:"",
-    profession:"",
-    company:"",
-    experience:0,
-    isEnrolled:false,
-    isValid:false,
+    mobile: "",
+    city: "",
+    university: "",
+    profession: "",
+    company: "",
+    experience: 0,
+    isEnrolled: false,
+    isValid: false,
   };
 
   useEffect(() => {
@@ -98,7 +98,6 @@ const Dashboard = ({ children }) => {
       setTheme(savedTheme);
       document.documentElement.classList.add("dark");
     }
-    
 
     if (getStudentQuery.isSuccess) {
       const {
@@ -219,11 +218,11 @@ const Dashboard = ({ children }) => {
       <Contents className={isDashboardOpen ? "w-[calc(100%-18rem)]" : "w-[calc(100%-3.5rem)]"}>
         <div className="flex items-center justify-between mb-6">
           <div></div>
-          <div className="pl-2 text-bold text-lg text-black dark:text-white border-solid border-2 border-sky-500 rounded-lg rounded-r-full bg-sky-500 dark:bg-sky-600 dark:border-sky-700">
-            Welcome, {getStudentQuery.isSuccess?getStudentQuery.data.name.split(" ")[0]:email}
-            <IconButton size="small"  onClick={handleOpen}>
+          <div className="pl-2 text-lg text-black border-2 border-solid rounded-lg rounded-r-full text-bold border-sky-500 bg-sky-500 dark:border-sky-700 dark:bg-sky-600 dark:text-white">
+            Welcome, {getStudentQuery.isSuccess ? getStudentQuery.data.name.split(" ")[0] : email}
+            <IconButton size="small" onClick={handleOpen}>
               <Avatar className="cursor-pointer">
-                <MdAccountCircle size={24} color="sky"/>
+                <MdAccountCircle size={24} color="sky" />
               </Avatar>
             </IconButton>
             <Menu

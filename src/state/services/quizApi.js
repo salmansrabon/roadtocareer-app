@@ -37,6 +37,14 @@ export const quizApi = createApi({
       transformResponse: (response) => response.data,
       providesTags: [`Quiz-id`],
     }),
+    getMarks: builder.query({
+      query: ({ id }) => ({
+        url: `v1/quizes/getMarks/${id}`,
+        method: "GET",
+      }),
+      transformResponse: (response) => response.data,
+      providesTags: [`Quiz-id`],
+    }),
     getRandomQuiz: builder.query({
       query: ({ id, studentId }) => ({
         url: `v1/quizes/getRandomQuestions/${id}`,
@@ -97,5 +105,6 @@ export const {
   useGetRandomQuizQuery,
   useGetAnswersQuery,
   useGetQuestionsQuery,
+  useGetMarksQuery,
   util: {},
 } = quizApi;

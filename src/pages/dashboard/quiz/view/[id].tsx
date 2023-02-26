@@ -13,22 +13,20 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
+import Timer from "../../../../components/Timer";
 import HeadComponent from "../../../../components/Head";
 import withPermissions from "../../../../components/withPermissions";
 import { useUser } from "../../../../hooks/useUser";
 import { Dashboard } from "../../../../components";
 import { QuizPrompt } from "../../../../components/QuizPrompt";
+import { IQuizShape } from "../[createOrUpdate]/[...requirements]";
 import {
   useGetQuizQuery,
   useGetRandomQuizQuery,
   useGetStudentQuery,
   useGetAnswersQuery,
   useGetQuestionsQuery,
-  useEditStudentMutation,
 } from "../../../../state/services";
-import { IQuizShape } from "../[createOrUpdate]/[...requirements]";
-import Timer, { formatFriendlyTime } from "../../../../components/Timer";
-import { formatDistanceStrict } from "date-fns";
 
 export interface StudentQuizAnswer {
   startTime: number;
@@ -162,7 +160,7 @@ const Quiz = () => {
       }, 0)
     : null;
 
-  const [showMarks, setShowMarks] = React.useState(true);
+  const [showMarks, _setShowMarks] = React.useState(true);
 
   const isAllLoading =
     isLoading ||
@@ -211,10 +209,16 @@ const Quiz = () => {
           {data && (
             <div className="space-y-4">
               <h6 className="mb-6">Quiz: {data.title}</h6>
-              <p>{data.description}</p>
+              <p className="max-w-sm font-normal text-gray-700 dark:text-gray-400">
+                {data.description}
+              </p>
+              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
               <p>Total time: {data.totalTime} min</p>
               <p>Start date: {new Date(data.quizStartDate).toLocaleDateString()}</p>
               <p>End date: {new Date(data.quizEndDate).toLocaleDateString()}</p>
+              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+
               {isQuizSubmitted && (
                 <Typography color="textSecondary" variant="h6">
                   Total marks: {obtainedMarks ?? 0}/{questions.length}
@@ -232,13 +236,7 @@ const Quiz = () => {
                   <Typography color="textSecondary" variant="h5">
                     The quiz is submitted.
                   </Typography>
-                  <Button
-                    onClick={() => setShowMarks((o) => !o)}
-                    variant="contained"
-                    color="primary"
-                  >
-                    {showMarks ? "Hide Solution" : "Show Solution"}
-                  </Button>
+
                   <Collapse
                     className="p-4 bg-gray-800"
                     in={showMarks && (isQuizSubmitted || (isTimeOver && !!startTime))}

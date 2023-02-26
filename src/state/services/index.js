@@ -68,6 +68,7 @@ export {
   useDeleteQuizMutation,
   useGetRandomQuizQuery,
   useGetQuestionsQuery,
+  useGetMarksQuery,
 } from "./quizApi";
 
 export {

@@ -48,7 +48,7 @@ const Timer: React.FC<Props> = ({ reactiveTimeInSec = 0, onFinish, shouldStart =
   }
 
   return (
-    <div className="absolute z-50 p-2 bg-red-200 rounded top-6 right-96">
+    <div className="absolute top-6 right-96 z-50 min-w-[200px] rounded bg-red-200 p-2">
       <h6 className="text-red-700">Time Left: {formatFriendlyTime(time)}</h6>
     </div>
   );
