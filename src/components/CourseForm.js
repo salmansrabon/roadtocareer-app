@@ -16,6 +16,8 @@ const CourseForm = ({
   control,
   handleSubmit,
   onSubmit,
+  setFileName,
+  fileName,
   errors,
   // videosField,
   // videosAppend,
@@ -30,6 +32,7 @@ const CourseForm = ({
   // packageAppend,
   // packageRemove,
 }) => {
+  
   return (
     <form
       className="space-y-6 rounded-md bg-primary-200 p-6 shadow-md"
@@ -94,13 +97,12 @@ const CourseForm = ({
         )}
       />
       <div className="flex items-center gap-3 ">
-      <InputLabel>Is Enabled</InputLabel>
+        <InputLabel>Is Enabled</InputLabel>
         <Controller
           name="isEnabled"
           control={control}
-          render={({ field }) => <Checkbox color="primary" checked={field.value}{...field} />}
+          render={({ field }) => <Checkbox color="primary" checked={field.value} {...field} />}
         />
-        
       </div>
       <div className="flex items-center gap-4">
         <Controller
@@ -212,17 +214,19 @@ const CourseForm = ({
         <Controller
           name="image"
           control={control}
-          render={({ field }) => (
-            <TextField
-              variant="outlined"
-              label="Cover Image URL"
-              fullWidth
-              error={errors?.image}
-              helperText={errors?.image?.message}
-              {...field}
+          rules={{ required: "Please select an image file" }}
+          render={({ field: { onChange } }) => (
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                onChange(e.target.files[0]);
+                setFileName(e.target.files[0]?.name || "");
+              }}
             />
           )}
         />
+        <p>Selected file: {fileName}</p>
         <Controller
           name="video"
           control={control}
@@ -397,7 +401,7 @@ const CourseForm = ({
         </div>
       </ul> */}
 
-     {/* <ul className="flex w-full flex-col gap-2">
+      {/* <ul className="flex w-full flex-col gap-2">
         <div className="flex items-center justify-between">
           <IconButton onClick={() => packageAppend({ package: "", student: "", jobHolder: "" })}>
             <MdAdd />

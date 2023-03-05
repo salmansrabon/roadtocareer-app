@@ -22,7 +22,9 @@ const Home = ({ isSuccess, courseList }) => {
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (ctx) => {
   await store.dispatch(getCourses());
   const state = store.getState();
+
   const { isSuccess, isError, error, courseList } = state.courseReducer;
+
   return {
     props: {
       isSuccess,

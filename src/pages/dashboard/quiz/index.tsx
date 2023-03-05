@@ -108,7 +108,7 @@ const Quizzes = () => {
               },
               { title: "Course Id", field: "courseId" },
               { title: "Obtained Marks", field: "quizAnswer.marks" },
-              { title: "Total Marks", field: "quizAnswer.totalMarks" },
+              { title: "Total Marks", field: "totalMarks" },
             ]}
             data={marks ?? []}
             options={{

@@ -18,12 +18,11 @@ const Courses = ({ data }) => {
   return (
     <div id="courses" className="scroll-mt-20 bg-primary-200 dark:bg-dark-600/20">
       <Wrapper className="py-16">
-        <h3 className="text-center font-bold">আমাদের কোর্সসমূহ</h3>
+        <h3 className="font-bold text-center">আমাদের কোর্সসমূহ</h3>
         <Cards>
-          {data.map((course, index) => course.isEnabled?(
-            
-            <Card data={course} key={index} />
-          ):"")}
+          {data.map((course, index) =>
+            course.isEnabled ? <Card data={course} key={index} /> : null
+          )}
         </Cards>
       </Wrapper>
     </div>

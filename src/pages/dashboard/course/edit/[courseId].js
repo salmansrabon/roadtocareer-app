@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,12 +8,19 @@ import { format } from "date-fns";
 import { useGetCourseQuery, useEditCourseMutation } from "../../../../state/services";
 import { withAuth, Head, Dashboard, CourseForm, Alert } from "../../../../components";
 import { courseSchema } from "../../../../helpers";
+import { api } from "../../../../variables";
+import {useUser} from "../../../../hooks/useUser"
+
 
 const Edit = () => {
   const router = useRouter();
+  const { token} = useUser();
   const id = router.query.courseId;
   const getCourseQuery = useGetCourseQuery({ id }, { skip: !id });
   const [editCourse, editState] = useEditCourseMutation();
+  const [fileName, setFileName] = React.useState("");
+  const [previousName, setPreviousName] = React.useState("");
+
 
   const {
     control,
@@ -109,7 +117,7 @@ const Edit = () => {
         classTime: timeData?.start || "21:00",
         image: data.image || "",
         video: data.video || "",
-        isEnabled: data?.isEnabled?? true,
+        isEnabled: data?.isEnabled ?? true,
         notice: data.notice || "",
         // package1: priceData?.[0]?.package || "",
         // courseFeeStudent1: priceData?.[0]?.student || "",
@@ -127,10 +135,11 @@ const Edit = () => {
         //   jobHolder: price?.jobHolder,
         // })) || [{ package: "", student: "", jobHolder: "" }],
       });
+      setPreviousName(data.image.split('/').pop())
     }
   }, [router, reset, getCourseQuery, editState]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     // const price = data.resourcePackages.map((item) => ({
     //   package: item.package,
     //   student: item.student,
@@ -141,7 +150,7 @@ const Edit = () => {
       courseTitle: data.courseTitle,
       courseInitial: data.courseInitial,
       batch: data.batch,
-      image: data.image,
+      image: data.image?.name ? `${api}images/course_thumbnails/${data.image.name}` : data.image,
       video: data.video,
       description: data.description,
       classTime: {
@@ -155,7 +164,24 @@ const Edit = () => {
       isEnabled: data.isEnabled,
       notice: data.notice,
     };
+    if (data.image?.name !== undefined) {
+      const formData = new FormData();
+      formData.append("image", data.image);
+      formData.append("destination", "course_thumbnails");
+      formData.append('previous',previousName)
 
+      try {
+        await axios.post(`${api}upload-image`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            authorization: `Bearer ${token}`,
+          },
+        });
+        console.log("Image uploaded successfully!");
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
     editCourse({ id, course });
   };
 
@@ -181,6 +207,8 @@ const Edit = () => {
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
           errors={errors}
+          setFileName={setFileName}
+          fileName={fileName}
           // videosField={videosField}
           // videosAppend={videosAppend}
           // videosRemove={videosRemove}

@@ -12,6 +12,7 @@ module.exports = withBundleAnalyzer({
       "th.bing.com",
       "docs.nestjs.com",
       "res.cloudinary.com",
+      'localhost',
     ],
   },
   // async redirects() {

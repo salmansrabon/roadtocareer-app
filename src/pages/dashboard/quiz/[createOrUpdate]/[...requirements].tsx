@@ -67,9 +67,14 @@ function QuizCreate() {
     data,
     isLoading: isAssignmentLoading,
     refetch,
-  } = useGetQuizQuery({
-    skip: !isUpdate || !updateId,
-  });
+  } = useGetQuizQuery(
+    {
+      id: updateId,
+    },
+    {
+      skip: !isUpdate || !updateId,
+    }
+  );
 
   const {
     register: formRegister,

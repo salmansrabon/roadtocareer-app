@@ -30,10 +30,10 @@ export const courseSchema = yup.object().shape(
     description: yup.string().required("Required"),
     classDays: yup.array().min(1, "Select at least one day").required("Required"),
     classTime: yup.string().required("Required"),
-    image: yup.string().when("image", {
-      is: (value) => value?.length,
-      then: (rule) => rule.matches(urlRegx, "Must be a valid url"),
-    }),
+    // image: yup.string().when("image", {
+    //   is: (value) => value?.length,
+    //   then: (rule) => rule.matches(urlRegx, "Must be a valid url"),
+    // }),
     video: yup.string().when("video", {
       is: (value) => value?.length,
       then: (rule) => rule.min(11).max(11),

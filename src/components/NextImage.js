@@ -8,6 +8,7 @@ const ImageWrapper = tw.div`
 `;
 
 const NextImage = ({ variant, src, alt, ...rest }) => {
+  // console.log("variant: ", variant, src, alt, rest);
   return (
     <ImageWrapper variant={variant}>
       <Image

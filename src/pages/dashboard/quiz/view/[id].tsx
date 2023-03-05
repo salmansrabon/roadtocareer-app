@@ -212,12 +212,12 @@ const Quiz = () => {
               <p className="max-w-sm font-normal text-gray-700 dark:text-gray-400">
                 {data.description}
               </p>
-              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+              <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700" />
 
               <p>Total time: {data.totalTime} min</p>
               <p>Start date: {new Date(data.quizStartDate).toLocaleDateString()}</p>
               <p>End date: {new Date(data.quizEndDate).toLocaleDateString()}</p>
-              <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+              <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700" />
 
               {isQuizSubmitted && (
                 <Typography color="textSecondary" variant="h6">
@@ -225,20 +225,14 @@ const Quiz = () => {
                 </Typography>
               )}
 
-              {!isQuizActive ? (
-                <>
-                  <Typography color="textSecondary" variant="h6">
-                    Quiz is not active.
-                  </Typography>
-                </>
-              ) : isQuizSubmitted || (isTimeOver && !!startTime) ? (
+              {isQuizSubmitted || (isTimeOver && !!startTime) ? (
                 <>
                   <Typography color="textSecondary" variant="h5">
                     The quiz is submitted.
                   </Typography>
 
                   <Collapse
-                    className="p-4 bg-gray-800"
+                    className="bg-gray-800 p-4"
                     in={showMarks && (isQuizSubmitted || (isTimeOver && !!startTime))}
                   >
                     <ul className="space-y-4">
@@ -253,8 +247,8 @@ const Quiz = () => {
                             {question.options.map((option, _index) => {
                               const isMatchedQuiz = selfQuizData.answers[index] === option.value;
                               return (
-                                <div className="flex my-2 ml-4" key={`${_index}` + option}>
-                                  <Typography className="flex items-center p-2 space-x-4 rounded">
+                                <div className="my-2 ml-4 flex" key={`${_index}` + option}>
+                                  <Typography className="flex items-center space-x-4 rounded p-2">
                                     <span
                                       className={`h-4 w-4 rounded-full ${
                                         isMatchedQuiz ? "bg-black ring" : "bg-white"
@@ -281,6 +275,12 @@ const Quiz = () => {
                       })}
                     </ul>
                   </Collapse>
+                </>
+              ) : !isQuizActive ? (
+                <>
+                  <Typography color="textSecondary" variant="h6">
+                    Quiz is not active.
+                  </Typography>
                 </>
               ) : quizStarted && !!randomQuizzesData ? (
                 <StepMachine>

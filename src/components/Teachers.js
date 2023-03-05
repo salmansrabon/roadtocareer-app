@@ -14,13 +14,13 @@ export const Anchor2 = tw.a`
 
 const Teachers = () => {
   return (
-    <div id="teachers" className="scroll-mt-20 bg-primary-200 py-16 dark:bg-dark-600/20">
-      <h3 className="mb-12 text-center font-bold">আমাদের টীম</h3>
+    <div id="teachers" className="py-16 scroll-mt-20 bg-primary-200 dark:bg-dark-600/20">
+      <h3 className="mb-12 font-bold text-center">আমাদের টীম</h3>
       <Wrapper className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {teachers.map((teacher, index) => (
           <div
             key={index}
-            className="flex h-full flex-col overflow-hidden rounded-lg bg-white p-6 shadow-lg dark:bg-dark-600/20"
+            className="flex flex-col h-full p-6 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-dark-600/20"
           >
             <NextImage
               src={teacher.image}
@@ -31,7 +31,7 @@ const Teachers = () => {
               className="rounded-lg"
             />
             <p className="my-4 text-center">{teacher.designation}</p>
-            <h6 className="mb-4 text-center font-bold">{teacher.name}</h6>
+            <h6 className="mb-4 font-bold text-center">{teacher.name}</h6>
             <p className="mb-4 text-center">{teacher.description}</p>
             <div className="flex justify-center gap-4">
               {teacher.facebook && (

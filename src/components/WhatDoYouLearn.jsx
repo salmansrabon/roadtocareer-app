@@ -39,15 +39,13 @@ const WhatDoYouLearn = ({ course }) => {
   const { id, contentSyllabus } = course || {};
 
   const { data, isLoading } = useGetPackagesQuery({ courseId: id });
-  const [value, setValue] = React.useState((data?.length || 1)-1);
-  
-  
+  const [value, setValue] = React.useState((data?.length || 1) - 1);
+
   useEffect(() => {
-   if(!isLoading){
-    setValue(data?.length-1)
-   }
-  }, [isLoading])
-  
+    if (!isLoading) {
+      setValue(data?.length - 1);
+    }
+  }, [isLoading]);
 
   const packageId = data?.[value]?.id;
   // console.log(data?.[value])
@@ -68,11 +66,11 @@ const WhatDoYouLearn = ({ course }) => {
         <Container>
           <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center">
             <Grid item xs={5} md={4}>
-              <Card data={{...course, 'price': data?.[value]}} actionType="enroll" />
+              <Card data={{ ...course, price: data?.[value] }} actionType="enroll" />
             </Grid>
 
             <Grid item xs={7} md={8}>
-              <h3 className="mb-6 text-center font-bold">
+              <h3 className="mb-6 font-bold text-center">
                 কোর্সের {data?.[value]?.packageName} প্যাকেজে যা কিছু আছে
               </h3>
               <div className="w-full max-w-4xl">
@@ -93,19 +91,22 @@ const WhatDoYouLearn = ({ course }) => {
                   aria-label="wrapped label tabs example"
                   className="bg-gray-800"
                 >
-                  {data?.slice()?.reverse()?.map((item, index) => (
-                    <Tab
-                      key={data?.length - 1 -index}
-                      value={data?.length - 1 -index}
-                      label={
-                        <div className="flex items-center gap-2">
-                          <Typography color="white">{item.packageName}</Typography>
-                          <Typography color="antiquewhite">৳{item.studentFee}</Typography>
-                        </div>
-                      }
-                      className="gap-2 "
-                    />
-                  ))}
+                  {data
+                    ?.slice()
+                    ?.reverse()
+                    ?.map((item, index) => (
+                      <Tab
+                        key={data?.length - 1 - index}
+                        value={data?.length - 1 - index}
+                        label={
+                          <div className="flex items-center gap-2">
+                            <Typography color="white">{item.packageName}</Typography>
+                            <Typography color="antiquewhite">৳{item.studentFee}</Typography>
+                          </div>
+                        }
+                        className="gap-2 "
+                      />
+                    ))}
                 </Tabs>
                 <LoadingOverlayWrapper active={isModuleLoading || isModuleFetching}>
                   <Box className="mt-8 min-h-[200px]">
@@ -127,7 +128,7 @@ const WhatDoYouLearn = ({ course }) => {
                       return list.map(({ title, description }, index) =>
                         !title ? null : (
                           <Accordion
-                            className="border-b border-gray-700 bg-gray-900 text-gray-300"
+                            className="text-gray-300 bg-gray-900 border-b border-gray-700"
                             key={index}
                           >
                             <AccordionSummary

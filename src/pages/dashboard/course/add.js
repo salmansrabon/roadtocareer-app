@@ -1,16 +1,20 @@
 import React from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Backdrop, CircularProgress } from "@material-ui/core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAddCourseMutation } from "../../../state/services";
 import { withAuth, Head, Dashboard, CourseForm, Alert } from "../../../components";
-import { courseSchema } from "../../../helpers";
+import { courseSchema, } from "../../../helpers";
+import { api } from "../../../variables";
+import {useUser} from "../../../hooks/useUser"
 
 const Add = () => {
   const router = useRouter();
   const [addCourse, { isFetching, isLoading, isSuccess, isError, error }] = useAddCourseMutation();
-
+  const [fileName, setFileName] = React.useState("");
+  const { token} = useUser();
   const {
     control,
     handleSubmit,
@@ -77,7 +81,9 @@ const Add = () => {
     });
   }
 
-  const onSubmit = (data) => {
+  const onSubmit =  async (data) => {
+    // e.preventDefault();
+    // console.log('hellooo')
     // const price = data.resourcePackages.map((item) => ({
     //   package: item.package,
     //   student: item.student,
@@ -88,7 +94,7 @@ const Add = () => {
       courseTitle: data.courseTitle,
       courseInitial: data.courseInitial,
       batch: data.batch,
-      image: data.image,
+      image: `${api}images/course_thumbnails/${data.image.name}`,
       video: data.video,
       description: data.description,
       enrollmentStartDate: data.enrollmentStartDate,
@@ -108,7 +114,21 @@ const Add = () => {
       isEnabled: data.isEnabled,
       notice: data.notice,
     };
+    const formData = new FormData();
+    formData.append('image', data.image);
+    formData.append('destination', 'course_thumbnails');
 
+    try {
+      await axios.post(`${api}upload-image`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'authorization' : `Bearer ${token}`
+        },
+      });
+      console.log('Image uploaded successfully!');
+    } catch (err) {
+      console.log(err.message);
+    }
     addCourse({ course });
   };
 
@@ -125,6 +145,8 @@ const Add = () => {
           handleSubmit={handleSubmit}
           onSubmit={onSubmit}
           errors={errors}
+          setFileName={setFileName}
+          fileName={fileName}
           // videosField={videosField}
           // videosAppend={videosAppend}
           // videosRemove={videosRemove}
